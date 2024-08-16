@@ -60,6 +60,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center; 
+    padding: 2rem;
 }
 .initialization{
     visibility: hidden;
@@ -76,6 +77,7 @@ body{
     font-size: 3.4rem;
     font-weight: bold;
     margin-bottom: 2.5rem;
+    text-align: center;
 }
 
 .button{
@@ -100,12 +102,35 @@ body{
 
 .insects-selection{
     display: flex;
+    justify-content: center;
     max-width: 68rem;
     width: 100%;
+    gap: 2rem;
+    margin: 2rem 0;
+    cursor: pointer;
+}
+
+.insects-selection li{
+    width: 20rem;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 2rem 2rem 1rem 2rem;
+    border: 1px solid white;
+    
+}
+.insects-selection li:hover{
+    background-color: white;
+    color: #516dff;
+}
+.insects-selection li p{
+    font-size: 1.2rem;
 }
 .insects-selection li img{
-    width: 50px;
-    height: 50px;
+    width: 10rem;
+    height: 10  rem;
 }
 .game{
     visibility: hidden;
@@ -113,4 +138,5 @@ body{
      /* height: 0;
     visibility: hidden; */
     /* Lo de arriba es lo que va, lo de abajo es para la maquetacion */
+    /* comment */
 } 
