@@ -72,7 +72,7 @@ body{
     align-items: center;
     visibility: hidden;
     position: absolute;
-    transition: all .8s linear;
+    transition: all .4s linear;
    
 }
 
@@ -102,7 +102,7 @@ body{
     align-items: center;
     position: absolute;
     bottom: 0;
-    transition: all .8s linear;
+    transition: all .4s linear;
 }
 
 .insects-selection{
@@ -112,8 +112,7 @@ body{
     width: 100%;
     gap: 2rem;
     margin: 2rem 0;
-    cursor: pointer;
-    
+    cursor: pointer;  
     
 }
 
@@ -126,6 +125,16 @@ body{
     justify-content: space-between; 
     padding: 2rem 2rem 1rem 2rem;
     border: 1px solid white;
+    position: relative;
+    
+}
+.insects-selection li::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     
 }
 .insects-selection li:hover{
@@ -139,7 +148,17 @@ body{
     width: 10rem;
     height: 10rem;
 }
+header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+
+}
 .game{
+    display: flex;
+    flex-direction: column;
     visibility: hidden;
     height: 0; 
     width: 100%;
@@ -152,16 +171,16 @@ body{
     transition: all .8s linear;
     
 } 
-
+.insectsContainer{
+    height: 100%;
+    width: 100%
+}
 
 .show {
     visibility: visible;
     flex: 1;
     height: 100vh;
-    /* transform: translateY(0); */
-    
-    /* top: 0; */
-    
+
 }
 .top{
     top: 0;
