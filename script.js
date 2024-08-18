@@ -7,12 +7,14 @@ const selectInsect = document.querySelectorAll('.insect')
 
 const showGameStage = () => {
     insectSelection.classList.remove('show');
+    insectSelection.classList.add('top')
     gameTable.classList.add('show')
 }
 selectInsect.forEach(insect => insect.addEventListener('click',showGameStage))
 
 const showSelectionStage = () => {
     initialization.classList.remove('show');
+    
     insectSelection.classList.add('show');
 }
 

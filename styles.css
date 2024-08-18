@@ -64,10 +64,7 @@ body{
     position: relative;
 }
 .initialization{
-    /* visibility: hidden;
-     */
-    /* Lo de arriba es solo para maquetacion */
-    /* flex: 1;  */
+   
     height: 0;
     display: flex;
     flex-direction: column;
@@ -75,7 +72,7 @@ body{
     align-items: center;
     visibility: hidden;
     position: absolute;
-    /* transform: translateY(101%);s */
+    transition: all .8s linear;
    
 }
 
@@ -98,16 +95,14 @@ body{
     height: 0;
     visibility: hidden; 
     /* Lo de arriba es lo que va, lo de abajo es para la maquetacion */
-    /* flex: 1; */
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: all 1s linear;
     position: absolute;
     bottom: 0;
-    
-    /* transform: translateY(101%); */
+    transition: all .8s linear;
 }
 
 .insects-selection{
@@ -118,6 +113,7 @@ body{
     gap: 2rem;
     margin: 2rem 0;
     cursor: pointer;
+    
     
 }
 
@@ -146,35 +142,27 @@ body{
 .game{
     visibility: hidden;
     height: 0; 
-     
-    /* Lo de arriba es lo que va, lo de abajo es para la maquetacion */
-    /* comment */
-    /* flex: 1; */
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding-top: 1.6rem;
+    padding: 1.6rem;
     font-size: 2rem;
-    transition: all 1s linear;
-    /* transform: translateY(101%); */
     position: absolute;
     bottom: 0;
-    right: 0;
+    transition: all .8s linear;
+    
 } 
 
 
 .show {
     visibility: visible;
     flex: 1;
-    height: 100%;
+    height: 100vh;
     /* transform: translateY(0); */
-    transition: all 1s linear;
-    top: 0;
+    
+    /* top: 0; */
     
 }
-
-/* .hide {
-    visibility: hidden;
-    height: 0;
-    flex: none;
-} */
+.top{
+    top: 0;
+}
