@@ -11,7 +11,7 @@ const insectsContainer = document.getElementById('insectsContainer')
 let second = 0
 let minute = 0
 
-const insectsArray = []
+const insectsArray = [crypto.randomUUID(),crypto.randomUUID()]
 
 const insects = {
     fly: 'https://pngimg.com/uploads/fly/fly_PNG3946.png',
@@ -51,21 +51,28 @@ const runTimer = () => {
 const renderInsect = (name) => {
     const insectName = name.toLowerCase()
     const divMeasures = insectsContainer.getBoundingClientRect()
-    
+    const id = crypto.randomUUID()
+    insectsArray.push(id)
     // console.log(divMeasures);//Aqui tienes el objeto a trabajar
     
-    console.log(randomHeight(divMeasures.bottom,divMeasures.height));
-
-
+    //console.log(randomHeight(divMeasures.bottom,divMeasures.height));
+    
+    
     
     //No tocar mas nada que no sea de aqui para abajo.
-    const createInsect = document.createElement('img')
-    createInsect.src = insects[insectName]
-    createInsect.classList.add('insect')
-    createInsect.style.position = 'absolute'
-    createInsect.style.top =  randomHeight(divMeasures.bottom,divMeasures.height) - 100 + 'px'
-    createInsect.style.left = randomWidth(divMeasures.width,divMeasures.x) - 100 + 'px'
-    insectsContainer.appendChild(createInsect)
+    insectsArray.forEach(insectId => {
+        const height = randomHeight(divMeasures.bottom,divMeasures.height) //Aqui Ani
+        const width = randomWidth(divMeasures.width,divMeasures.x)
+        
+        const createInsect = document.createElement('img')
+        createInsect.src = insects[insectName]
+        createInsect.id = insectId
+        createInsect.classList.add('insect')
+        createInsect.style.position = 'absolute'
+        createInsect.style.top =  height  >= 100 ? height - 100 + 'px' : height + 'px'
+        createInsect.style.left =  width >= 100  ? width - 100 + 'px' : width + 'px'
+        insectsContainer.appendChild(createInsect)
+    })
     
 }
 setInterval(() => {
@@ -77,11 +84,11 @@ setInterval(() => {
 
 //Aqui 
 const randomHeight = (max,min) => { //ESTO ES PARA EL EJE Y VERTICAL
-    return Math.floor(Math.random() * (max - min) + 1)
+    return Math.floor(Math.random() * (max - min) + min)
 }
 //Aqui.
 const randomWidth = (max,min) => {//ESTO ES PARA EL EJE X HORIZONTAL
-    return Math.floor(Math.random() * (max - min) + 1)
+    return Math.floor(Math.random() * (max - min) + min)
 }
 
 
