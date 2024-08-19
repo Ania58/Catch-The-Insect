@@ -11,6 +11,8 @@ const insectsContainer = document.getElementById('insectsContainer')
 let second = 0
 let minute = 0
 
+const insectsArray = []
+
 const insects = {
     fly: 'https://pngimg.com/uploads/fly/fly_PNG3946.png',
     mosquito : 'https://pngimg.com/uploads/mosquito/mosquito_PNG18175.png',
@@ -50,17 +52,19 @@ const renderInsect = (name) => {
     const insectName = name.toLowerCase()
     const divMeasures = insectsContainer.getBoundingClientRect()
     
-    console.log(divMeasures);//Aqui tienes el objeto a trabajar
+    // console.log(divMeasures);//Aqui tienes el objeto a trabajar
     
-     console.log(randomHeight(divMeasures.bottom,divMeasures.height));
+    console.log(randomHeight(divMeasures.bottom,divMeasures.height));
+
+
     
     //No tocar mas nada que no sea de aqui para abajo.
     const createInsect = document.createElement('img')
     createInsect.src = insects[insectName]
     createInsect.classList.add('insect')
     createInsect.style.position = 'absolute'
-    createInsect.style.top =  divMeasures.height + 100 + 'px'
-    createInsect.style.left =  divMeasures.width - 100 + 'px'
+    createInsect.style.top =  randomHeight(divMeasures.bottom,divMeasures.height) - 100 + 'px'
+    createInsect.style.left = randomWidth(divMeasures.width,divMeasures.x) - 100 + 'px'
     insectsContainer.appendChild(createInsect)
     
 }
@@ -79,5 +83,6 @@ const randomHeight = (max,min) => { //ESTO ES PARA EL EJE Y VERTICAL
 const randomWidth = (max,min) => {//ESTO ES PARA EL EJE X HORIZONTAL
     return Math.floor(Math.random() * (max - min) + 1)
 }
+
 
 startGameButton.addEventListener('click', showSelectionStage)
