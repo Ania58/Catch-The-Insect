@@ -144,7 +144,7 @@ body{
 .insects-selection li p{
     font-size: 1.2rem;
 }
-.insects-selection li img{
+.insects-selection li img, .insect{
     width: 10rem;
     height: 10rem;
 }

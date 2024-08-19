@@ -5,16 +5,20 @@ const minutes = document.getElementById('minutes')
 const seconds = document.getElementById('seconds')
 const gameTable = document.getElementById('game')
 const selectInsect = document.querySelectorAll('.insect')
+const insectsContainer = document.getElementById('insectsContainer')
 
-const insects = {
-    Fly: 'https://pngimg.com/uploads/fly/fly_PNG3946.png',
-    Mosquito : 'https://pngimg.com/uploads/mosquito/mosquito_PNG18175.png',
-    Spider : 'https://pngimg.com/uploads/spider/spider_PNG12.png',
-    Roach : 'https://pngimg.com/uploads/roach/roach_PNG12163.png'
-}
-
+//Counters
 let second = 0
 let minute = 0
+
+const insects = {
+    fly: 'https://pngimg.com/uploads/fly/fly_PNG3946.png',
+    mosquito : 'https://pngimg.com/uploads/mosquito/mosquito_PNG18175.png',
+    spider : 'https://pngimg.com/uploads/spider/spider_PNG12.png',
+    roach : 'https://pngimg.com/uploads/roach/roach_PNG12163.png'
+}
+
+
 const showGameStage = (event) => {
     insectSelection.classList.remove('show');
     insectSelection.classList.add('top')
@@ -30,10 +34,7 @@ const showSelectionStage = () => {
     initialization.classList.remove('show');
     
     insectSelection.classList.add('show');
-    
-    
-    
-    
+     
 }
 const runTimer = () => {
     
@@ -46,9 +47,21 @@ const runTimer = () => {
 
 }
 const renderInsect = (name) => {
+    const insectName = name.toLowerCase()
+    const divMeasures = insectsContainer.getBoundingClientRect()
     
-    const insectsContainer = document.getElementById('insectsContainer')
-    console.log(insectsContainer.getBoundingClientRect());
+    console.log(divMeasures);//Aqui tienes el objeto a trabajar
+    
+     console.log(randomHeight(divMeasures.bottom,divMeasures.height));
+    
+    //No tocar mas nada que no sea de aqui para abajo.
+    const createInsect = document.createElement('img')
+    createInsect.src = insects[insectName]
+    createInsect.classList.add('insect')
+    createInsect.style.position = 'absolute'
+    createInsect.style.top =  divMeasures.height + 100 + 'px'
+    createInsect.style.left =  divMeasures.width - 100 + 'px'
+    insectsContainer.appendChild(createInsect)
     
 }
 setInterval(() => {
@@ -58,7 +71,12 @@ setInterval(() => {
     }
 }, 1000);
 
-const randomNumber = (max,min) => {
+//Aqui 
+const randomHeight = (max,min) => { //ESTO ES PARA EL EJE Y VERTICAL
+    return Math.floor(Math.random() * (max - min) + 1)
+}
+//Aqui.
+const randomWidth = (max,min) => {//ESTO ES PARA EL EJE X HORIZONTAL
     return Math.floor(Math.random() * (max - min) + 1)
 }
 
