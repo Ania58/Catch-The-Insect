@@ -7,11 +7,12 @@ const gameTable = document.getElementById('game')
 const selectInsect = document.querySelectorAll('.insect')
 const insectsContainer = document.getElementById('insectsContainer')
 
+let insectChose = ''
 //Counters
 let second = 0
 let minute = 0
 
-const insectsArray = [crypto.randomUUID(),crypto.randomUUID()]
+let insectsArray = []
 
 const insects = {
     fly: 'https://pngimg.com/uploads/fly/fly_PNG3946.png',
@@ -25,8 +26,10 @@ const showGameStage = (event) => {
     insectSelection.classList.remove('show');
     insectSelection.classList.add('top')
     gameTable.classList.add('show')
-
-    renderInsect(event.target.id); // pasamos el id que es nombre
+    
+    console.log(event.target.id);
+    insectChose = event.target.id
+    createElement(event.target.id,1); // pasamos el id que es nombre
 }
 selectInsect.forEach(insect => insect.addEventListener('click',(event) => {
     showGameStage(event)
@@ -48,33 +51,65 @@ const runTimer = () => {
         
 
 }
-const renderInsect = (name) => {
+const createElement = (name, numbers) => {
+    
     const insectName = name.toLowerCase()
     const divMeasures = insectsContainer.getBoundingClientRect()
-    const id = crypto.randomUUID()
-    insectsArray.push(id)
+    console.log(divMeasures);
+    
+    for (let index = 0; index < numbers; index++) {
+        const id = crypto.randomUUID()
+        console.log('times');
+        
+        const animal = {
+            id,
+            top: randomHeight(divMeasures.bottom, 64),
+            left: randomWidth(divMeasures.width, divMeasures.x),
+            insectName: insectName
+        }
+        insectsArray.push(animal)
+
+    }
+    //console.log(insectsArray);
+    
+    renderInsect(insectsArray)
     // console.log(divMeasures);//Aqui tienes el objeto a trabajar
     
     //console.log(randomHeight(divMeasures.bottom,divMeasures.height));
-    
-    
-    
-    //No tocar mas nada que no sea de aqui para abajo.
-    insectsArray.forEach(insectId => {
-        const height = randomHeight(divMeasures.bottom,divMeasures.height) //Aqui Ani
-        const width = randomWidth(divMeasures.width,divMeasures.x)
-        
-        const createInsect = document.createElement('img')
-        createInsect.src = insects[insectName]
-        createInsect.id = insectId
-        createInsect.classList.add('insect')
-        createInsect.style.position = 'absolute'
-        createInsect.style.top =  height  >= 100 ? height - 100 + 'px' : height + 'px'
-        createInsect.style.left =  width >= 100  ? width - 100 + 'px' : width + 'px'
-        insectsContainer.appendChild(createInsect)
-    })
-    
+  
 }
+const renderInsect = (array) => {
+//No tocar mas nada que no sea de aqui para abajo.
+    
+    insectsContainer.innerHTML = ''
+    array ? array.forEach(insect => {
+    const {id,top,left,insectName} = insect
+    
+    
+    
+    // const height = randomHeight(divMeasures.bottom,divMeasures.height) //Aqui Ani
+    // const width = randomWidth(divMeasures.width,divMeasures.x)
+    
+    const createInsect = document.createElement('img')
+    createInsect.src = insects[insectName]
+    createInsect.id = id
+    createInsect.classList.add('insect')
+    createInsect.style.position = 'absolute'
+    createInsect.style.top =  top  >= 100 ? top - 100 + 'px' : top + 'px'
+    createInsect.style.left =  left >= 100  ? left - 100 + 'px' : left + 'px'
+    createInsect.addEventListener('click', (e) => deleteInsect(e.target.id))
+    insectsContainer.appendChild(createInsect)
+    }) : insectsContainer.innerHTML = ''
+}
+
+const deleteInsect = (id) => {
+    
+    insectsArray = insectsArray.filter(insect => insect.id != id) 
+    
+    
+    createElement(insectChose,2)
+}
+
 setInterval(() => {
     if (gameTable.classList.contains('show')) {
         runTimer()
