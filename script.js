@@ -5,6 +5,7 @@ const minutes = document.getElementById('minutes')
 const seconds = document.getElementById('seconds')
 const gameTable = document.getElementById('game')
 const scoreTable = document.getElementById('score')
+const messageCointainer = document.getElementById('message')
 const selectInsect = document.querySelectorAll('.insect')
 const insectsContainer = document.getElementById('insectsContainer')
 
@@ -12,7 +13,7 @@ let insectChosen = ''
 //Counters
 let second = 0
 let minute = 0
-let score = 0
+let score = 18
 let insectsArray = []
 
 const insects = {
@@ -56,7 +57,7 @@ const createElement = (name, numbers) => {
     
     const insectName = name.toLowerCase()
     const divMeasures = insectsContainer.getBoundingClientRect()
-    console.log(divMeasures);
+    // console.log(divMeasures);
     
     for (let index = 0; index < numbers; index++) {
         const id = crypto.randomUUID()
@@ -106,12 +107,12 @@ const renderInsect = (array) => {
 const deleteInsect = (id) => {
     score++
     scoreTable.innerText = score
+    
     const addFadeInsect = insectsArray.find(insect => insect.id === id)
     const insectDelete = document.getElementById(`${addFadeInsect.id}`)
     insectDelete.classList.add('insectFade')
-    
-    console.log(addFadeInsect);
-    
+
+    score > 20 ? showImpossibleWin() : null 
     setTimeout(() => {
         insectsArray = insectsArray.filter(insect => insect.id != id) 
     
@@ -119,7 +120,15 @@ const deleteInsect = (id) => {
         createElement(insectChosen,2) 
     }, 200);
 }
+const showImpossibleWin = () => {
+    
+    console.log(messageCointainer);
+    
+    messageCointainer.classList.add('showMessage')
+    
 
+    
+}
 setInterval(() => {
     if (gameTable.classList.contains('show')) {
         runTimer()
