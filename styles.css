@@ -148,6 +148,13 @@ body{
     width: 10rem;
     height: 10rem;
 }
+.insect{
+    cursor: pointer;
+}
+.insectFade{
+    transform: scale(.4);
+    transition: all .3s ease-in-out;
+}
 header{
     display: flex;
     justify-content: space-between;
