@@ -13,7 +13,7 @@ let insectChosen = ''
 //Counters
 let second = 0
 let minute = 0
-let score = 18
+let score = 0
 let insectsArray = []
 
 const insects = {
@@ -67,7 +67,8 @@ const createElement = (name, numbers) => {
             id,
             top: randomHeight(divMeasures.bottom, 64),
             left: randomWidth(divMeasures.width, divMeasures.x),
-            insectName: insectName
+            insectName: insectName,
+            insectRotation: rotate() + 'deg'
         }
         insectsArray.push(animal)
 
@@ -85,7 +86,7 @@ const renderInsect = (array) => {
     
     insectsContainer.innerHTML = ''
     array ? array.forEach(insect => {
-    const {id,top,left,insectName} = insect
+    const {id,top,left,insectName,insectRotation} = insect
     
     
     
@@ -99,6 +100,7 @@ const renderInsect = (array) => {
     createInsect.style.position = 'absolute'
     createInsect.style.top =  top  >= 100 ? top - 100 + 'px' : top + 'px'
     createInsect.style.left =  left >= 100  ? left - 100 + 'px' : left + 'px'
+    createInsect.style.rotate = insectRotation
     createInsect.addEventListener('click', (e) => deleteInsect(e.target.id))
     insectsContainer.appendChild(createInsect)
     }) : insectsContainer.innerHTML = ''
@@ -112,7 +114,7 @@ const deleteInsect = (id) => {
     const insectDelete = document.getElementById(`${addFadeInsect.id}`)
     insectDelete.classList.add('insectFade')
 
-    score > 20 ? showImpossibleWin() : null 
+    score >= 20 ? showImpossibleWin() : null 
     setTimeout(() => {
         insectsArray = insectsArray.filter(insect => insect.id != id) 
     
@@ -147,3 +149,8 @@ const randomWidth = (max,min) => {//ESTO ES PARA EL EJE X HORIZONTAL
 
 
 startGameButton.addEventListener('click', showSelectionStage)
+
+const rotate = () => {
+    return Math.floor(Math.random() * (360 - 1) + 1)
+}
+console.log(rotate());
