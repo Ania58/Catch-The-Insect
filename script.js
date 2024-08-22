@@ -82,7 +82,7 @@ const renderInsect = (array) => {
     const {id,top,left,insectName,insectRotation} = insect //destructuring from insect object
     
     const createInsect = document.createElement('img')
-    createInsect.src = insects[insectName] = // mosquito, roach,fly,spider. Retrieving insect img acording to its name. Other way to access data from an object.
+    createInsect.src = insects[insectName] // mosquito, roach,fly,spider. Retrieving insect img acording to its name. Other way to access data from an object.
     createInsect.id = id
     createInsect.classList.add('insect')
     createInsect.style.position = 'absolute'
