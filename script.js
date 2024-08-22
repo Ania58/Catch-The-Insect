@@ -82,7 +82,7 @@ const renderInsect = (array) => {
     const {id,top,left,insectName,insectRotation} = insect //destructuring from insect object
     
     const createInsect = document.createElement('img')
-    createInsect.src = insects[insectName] = // mosquito, roach,fly,spider. Retrieving insect img acording to its name. Other way to access data from an object.
+    createInsect.src = insects[insectName]  // mosquito, roach,fly,spider. Retrieving insect img acording to its name. Other way to access data from an object.
     createInsect.id = id
     createInsect.classList.add('insect')
     createInsect.style.position = 'absolute'
@@ -138,14 +138,7 @@ setInterval(() => {
 const randomNumber = (max,min) => { //ESTO ES PARA EL EJE Y VERTICAL
     return Math.floor(Math.random() * (max - min) + min)
 }
-// //Creating random width
-// const randomWidth = (max,min) => {//ESTO ES PARA EL EJE X HORIZONTAL
-//     return Math.floor(Math.random() * (max - min) + min)
-// }
-// //Creating random angle
-// const rotate = () => {
-//     return Math.floor(Math.random() * (max - min) + min)
-// }
+
 
 startGameButton.addEventListener('click', showSelectionStage) //Here is where everything starts!s
 
