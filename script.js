@@ -138,14 +138,7 @@ setInterval(() => {
 const randomNumber = (max,min) => { //ESTO ES PARA EL EJE Y VERTICAL
     return Math.floor(Math.random() * (max - min) + min)
 }
-// //Creating random width
-// const randomWidth = (max,min) => {//ESTO ES PARA EL EJE X HORIZONTAL
-//     return Math.floor(Math.random() * (max - min) + min)
-// }
-// //Creating random angle
-// const rotate = () => {
-//     return Math.floor(Math.random() * (max - min) + min)
-// }
+
 
 startGameButton.addEventListener('click', showSelectionStage) //Here is where everything starts!s
 
